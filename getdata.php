@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2011, Dan Schultzer <http://abcel-online.com/>
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *     * Redistributions of source code must retain the above copyright
@@ -15,7 +15,7 @@
  *     * Neither the name of the Dan Schultzer nor the
  *       names of its contributors may be used to endorse or promote products
  *       derived from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -32,21 +32,29 @@
  * @copyright Dan Schultzer
  */
 
-	$current_dirname = dirname(__FILE__)."/";
+$current_dirname = dirname(__FILE__) . "/";
 
-	/* First all the query strings are validated and taken care of */
- 	if(!isset($_GET['file'])) echo json_encode(array());
-	if(!isset($_GET['time_range'])) $time_range = 0;
-	else $time_range = $_GET['time_range'];
+                                     // First all the query strings are validated and taken care of
 
-	$replace = array("../","data/");
-	$_GET['file'] = $current_dirname."data/".str_replace($replace,"",$_GET['file']);
+                                     if (!isset($_GET['file'])) {
+                                             echo json_encode(array());
+                                     }
 
-	if(!file_exists($_GET['file'])) echo json_encode(array());
+if (!isset($_GET['time_range'])) {
+        $time_range = 0;
+}
+else {
+        $time_range = $_GET['time_range'];
+}
 
-	/* Now let's print the actual JSON */
-	require_once($current_dirname."config.php");
-	require_once($current_dirname."monit-graph.class.php");
 
-	MonitGraph::printFullGoogleGraphHistoric($_GET['file'], $time_range, $limit_records_shown);
-?>
+$replace = array("../","data/");
+$_GET['file'] = $current_dirname."data/".str_replace($replace,"",$_GET['file']);
+
+if(!file_exists($_GET['file'])) echo json_encode(array());
+
+/* Now let's print the actual JSON */
+require_once($current_dirname."config.php");
+require_once($current_dirname."monit-graph.class.php");
+
+MonitGraph::printFullGoogleGraphHistoric($_GET['file'], $time_range, $limit_records_shown);
