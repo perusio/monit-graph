@@ -53,3 +53,8 @@ This is a **fork** of the google code [project](https://code.google.com/p/monit-
 This script was originally created by Dan Schultzer from
 [Dream Conception](http://dreamconception.com/) and
 [Abcel](http://abcel-online.com).
+
+## TODO
+
+Convert this to Lua and make use of Nginx
+[embedded Lua](http://wiki.nginx.org/HttpLuaModule) module.
